@@ -18,6 +18,8 @@ if(THRUST_TARGET)
 endif()
 
 add_executable(gemm ${__SRCS__})
+set_property(TARGET gemm PROPERTY CUDA_ARCHITECTURES 90a)
+
 
 target_include_directories(gemm PUBLIC
     ${__INCLUDE_DIRS__})
@@ -26,6 +28,10 @@ target_link_libraries(gemm PRIVATE
     ${__LINK_LIBS__})
 
 set_property(TARGET gemm PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+
+target_compile_options(gemm PRIVATE 
+    $<$<COMPILE_LANGUAGE:CUDA>:--gpu-architecture=sm_90a>
+    $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
 
 unset(__SRCS__)
 unset(__INCLUDE_DIRS__)

@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(cute-gemm LANGUAGES CXX CUDA)
 
 include(CheckLanguage)
@@ -17,7 +18,7 @@ endif()
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 20)
+    set(CMAKE_CXX_STANDARD 17)
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
@@ -36,9 +37,7 @@ if(NOT DEFINED CMAKE_CUDA_STANDARD)
     set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 endif()
 
-if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES OR NOT CMAKE_CUDA_ARCHITECTURES)
-    set(CMAKE_CUDA_ARCHITECTURES "80;90a")
-endif()
+set(CMAKE_CUDA_ARCHITECTURES 90a)
 
 add_compile_options(-ffunction-sections -fdata-sections -fno-common)
 add_compile_options(-fPIC)
@@ -48,6 +47,8 @@ add_compile_options("$<$<CONFIG:RELEASE>:-O3;-g>")
 add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>")
 add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:--expt-extended-lambda>")
 add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:--ptxas-options=--warn-on-spills>")
+add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:--ptxas-options=-v>")
+
 
 add_link_options("LINKER:--as-needed")
 add_link_options("LINKER:--gc-sections")

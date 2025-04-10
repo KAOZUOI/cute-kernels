@@ -6,6 +6,8 @@
 #include <thrust/device_vector.h>
 
 #include <cute/tensor.hpp>
+#include <cute/int_tuple.hpp>
+#include <cute/layout.hpp>
 
 #include "cutlass/cluster_launch.hpp"
 #include "cutlass/arch/barrier.h"
@@ -46,24 +48,6 @@ gemm_device(ProblemShape shape_MNK, CtaTiler cta_tiler,
             TC      * C, CStride dC, TiledMma mma,
             Alpha alpha, Beta beta)
 {
-  // Preconditions
-  CUTE_STATIC_ASSERT_V(rank(shape_MNK) == Int<3>{});                   // (M, N, K)
-  CUTE_STATIC_ASSERT_V(rank(cta_tiler) == Int<3>{});                   // (BLK_M, BLK_N, BLK_K)
-
-  static_assert(is_static<SmemLayoutA>::value);
-  static_assert(is_static<SmemLayoutB>::value);
-
-  CUTE_STATIC_ASSERT_V(size<0>(SmemLayoutA{}) == size<0>(cta_tiler));  // BLK_M
-  CUTE_STATIC_ASSERT_V(size<0>(SmemLayoutB{}) == size<1>(cta_tiler));  // BLK_N
-  CUTE_STATIC_ASSERT_V(size<1>(SmemLayoutA{}) == size<2>(cta_tiler));  // BLK_K
-  CUTE_STATIC_ASSERT_V(size<1>(SmemLayoutB{}) == size<2>(cta_tiler));  // BLK_K
-
-  CUTE_STATIC_ASSERT_V(congruent(select<0,1>(shape_MNK), dC));         // dC strides for shape MN
-
-  //
-  // Full and Tiled Tensors
-  //
-
   // Represent the full tensors
   auto [M, N, K] = shape_MNK;
   Tensor mA = tma_a.get_tma_tensor(make_shape(M,K));                   // (M,K) TMA Tensor
