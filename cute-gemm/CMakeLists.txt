@@ -62,8 +62,7 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cutlass/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/cutlass/tools/util/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/gemm/include
 )
 
 add_definitions(-DCUTLASS_ARCH_MMA_SM90A_SUPPORTED=1)
