@@ -10,7 +10,7 @@ unset(__TMP_SRCS__)
 list(APPEND __INCLUDE_DIRS__ ${CUDAToolkit_INCLUDE_DIRS})
 
 list(APPEND __LINK_LIBS__
-    CUDA::cuda_driver CUDA::cudart CUDA::cublasLt CUDA::cupti)
+    CUDA::cuda_driver CUDA::cudart CUDA::cublas CUDA::cublasLt CUDA::cupti)
 
 get_property(THRUST_TARGET GLOBAL PROPERTY GLOBAL_THRUST_TARGET)
 if(THRUST_TARGET)
@@ -26,15 +26,28 @@ set_property(TARGET gemm_self PROPERTY CUDA_ARCHITECTURES 90a)
 add_executable(gemm gemm.cu)
 set_property(TARGET gemm PROPERTY CUDA_ARCHITECTURES 90a)
 
-target_include_directories(gemm PUBLIC
-    ${__INCLUDE_DIRS__})
+add_executable(gemm_blas blas.cu)
+set_property(TARGET gemm_blas PROPERTY CUDA_ARCHITECTURES 90a)
 
-target_link_libraries(gemm PRIVATE
-    ${__LINK_LIBS__})
+target_include_directories(gemm PUBLIC ${__INCLUDE_DIRS__})
+target_include_directories(gemm_self PUBLIC ${__INCLUDE_DIRS__})
+target_include_directories(gemm_blas PUBLIC ${__INCLUDE_DIRS__})
+
+target_link_libraries(gemm PRIVATE ${__LINK_LIBS__})
+target_link_libraries(gemm_self PRIVATE ${__LINK_LIBS__})
+target_link_libraries(gemm_blas PRIVATE ${__LINK_LIBS__})
 
 set_property(TARGET gemm PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+set_property(TARGET gemm_self PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+set_property(TARGET gemm_blas PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
 
 target_compile_options(gemm PRIVATE 
+    $<$<COMPILE_LANGUAGE:CUDA>:--gpu-architecture=sm_90a>
+    $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
+target_compile_options(gemm_self PRIVATE 
+    $<$<COMPILE_LANGUAGE:CUDA>:--gpu-architecture=sm_90a>
+    $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
+target_compile_options(gemm_blas PRIVATE 
     $<$<COMPILE_LANGUAGE:CUDA>:--gpu-architecture=sm_90a>
     $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
 

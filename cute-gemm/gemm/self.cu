@@ -68,11 +68,8 @@ gemm_device(ProblemShape shape_MNK, CtaTiler cta_tiler,
     Tensor sA = make_tensor(make_smem_ptr(smem.A.begin()), SmemLayoutA{});
     Tensor sB = make_tensor(make_smem_ptr(smem.B.begin()), SmemLayoutB{});
 
-    auto [tAgA, tAsA] = tma_partition(tma_a, Int<0>{}, Layout<_1>{},
-        group_modes<0,2>(sA), group_modes<0,2>(gA));
-
-    auto [tBgB, tBsB] = tma_partition(tma_b, Int<0>{}, Layout<_1>{},
-            group_modes<0,2>(sB), group_modes<0,2>(gB));
+    auto [tAgA, tAsA] = tma_partition(tma_a, group_modes<0,2>(sA), group_modes<0,2>(gA));
+    auto [tBgB, tBsB] = tma_partition(tma_b, group_modes<0,2>(sB), group_modes<0,2>(gB));
     
     constexpr int tma_transaction_bytes = sizeof(make_tensor_like(tensor<0>(tAsA)))
             + sizeof(make_tensor_like(tensor<0>(tBsB)));
