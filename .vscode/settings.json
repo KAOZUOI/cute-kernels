@@ -1,3 +1,21 @@
 {
-    "cmake.sourceDirectory": "/root/kernel_dev/cute-kernels/cute-gemm"
+    "cmake.sourceDirectory": "/root/kernel_dev/cute-kernels/cute-gemm",
+    "clangd.arguments": [
+        "--compile-commands-dir=/root/kernel_dev/cute-kernels/cute-gemm/build/compile_commands.json",
+        "--background-index",
+        "--header-insertion=never",
+        "--query-driver=/root/kernel_dev/cute-kernels/.pixi/envs/default/bin/clang++",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=bundled",
+        "--header-insertion-decorators",
+        "-j=32",
+        "--pch-storage=memory",
+        "--enable-config"
+    ],
+    "clangd.path": "/usr/bin/clangd",
+    "clangd.fallbackFlags": [
+        "-std=c++20"
+    ],
+    "discord.enabled": true
 }

@@ -8,12 +8,14 @@
 #include <cute/tensor.hpp>
 #include <cute/int_tuple.hpp>
 #include <cute/layout.hpp>
+#include <cute/atom/copy_atom.hpp>
+#include <cute/arch/mma_sm90.hpp>
+#include <cute/util/type_traits.hpp>
 
 #include "cutlass/cluster_launch.hpp"
 #include "cutlass/arch/barrier.h"
 #include "cutlass/pipeline/sm90_pipeline.hpp"
 
-#include "cutlass/util/print_error.hpp"
 #include "cutlass/util/GPU_Clock.hpp"
 #include "cutlass/util/helper_cuda.hpp"
 #include "cutlass/arch/mma_sm90.h"
@@ -216,7 +218,7 @@ gemm_device(ProblemShape shape_MNK, CtaTiler cta_tiler,
 template <class TA, class TB, class TC,
           class Alpha, class Beta>
 void
-gemm_tn(int m, int n, int k,
+gemm(int m, int n, int k,
         Alpha alpha,
         TA const* A, int ldA,
         TB const* B, int ldB,
@@ -294,20 +296,6 @@ gemm_tn(int m, int n, int k,
   }
 }
 
-template <class TA, class TB, class TC,
-          class Alpha, class Beta>
-void
-gemm(char transA, char transB, int m, int n, int k,
-     Alpha alpha,
-     TA const* A, int ldA,
-     TB const* B, int ldB,
-     Beta beta,
-     TC      * C, int ldC,
-     cudaStream_t stream = 0)
-{
-    return gemm_tn(m, n, k, alpha, A, ldA, B, ldB, beta, C, ldC, stream);
-}
-
 int main(int argc, char** argv)
 {
   cudaDeviceProp props;
@@ -318,8 +306,6 @@ int main(int argc, char** argv)
   int m = 512;
   int n = 256;
   int k = 1024;
-  char transA = 'T';
-  char transB = 'N';
 
   using TA = cute::half_t;
   using TB = cute::half_t;
@@ -347,15 +333,10 @@ int main(int argc, char** argv)
   const int timing_iterations = 100;
   GPU_Clock timer;
 
-  int ldA = 0, ldB = 0, ldC = m;
-
-  ldA = k;
-  ldB = k;
-  printf("GPU: %s, Compute Capability: %d.%d\n", props.name, props.major, props.minor);
-
+  int ldA = k, ldB = k, ldC = m;
   // Run once
   d_C = h_C;
-  gemm(transA, transB, m, n, k,
+  gemm(m, n, k,
        alpha,
        d_A.data().get(), ldA,
        d_B.data().get(), ldB,
@@ -367,7 +348,7 @@ int main(int argc, char** argv)
   // Timing iterations
   timer.start();
   for (int i = 0; i < timing_iterations; ++i) {
-    gemm(transA, transB, m, n, k,
+    gemm(m, n, k,
          alpha,
          d_A.data().get(), ldA,
          d_B.data().get(), ldB,

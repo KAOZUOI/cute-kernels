@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.18)
-# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(CMAKE_CUDA_COMPILER_ID MATCHES "NVIDIA")
+    set(CMAKE_CUDA_COMPILER_LAUNCHER "clang++")
+endif()
+
 project(cute-gemm LANGUAGES CXX CUDA)
 
 include(CheckLanguage)

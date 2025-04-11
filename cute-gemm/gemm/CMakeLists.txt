@@ -17,9 +17,14 @@ if(THRUST_TARGET)
     list(APPEND __LINK_LIBS__ ${THRUST_TARGET})
 endif()
 
-add_executable(gemm ${__SRCS__})
-set_property(TARGET gemm PROPERTY CUDA_ARCHITECTURES 90a)
+# add_executable(gemm ${__SRCS__})
+# set_property(TARGET gemm PROPERTY CUDA_ARCHITECTURES 90a)
 
+add_executable(gemm_self self.cu)
+set_property(TARGET gemm_self PROPERTY CUDA_ARCHITECTURES 90a)
+
+add_executable(gemm gemm.cu)
+set_property(TARGET gemm PROPERTY CUDA_ARCHITECTURES 90a)
 
 target_include_directories(gemm PUBLIC
     ${__INCLUDE_DIRS__})
