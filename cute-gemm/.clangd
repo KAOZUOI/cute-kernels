@@ -9,7 +9,7 @@ CompileFlags:
     # - "-D_DEFAULT_SOURCE"
     # - "-D_GNU_SOURCE"
     # - "-D__USE_GNU"
-    - "--include-cleaner-stdlib "
+    - "--include-cleaner-stdlib"
     - "-I/root/kernel_dev/cute-kernels/cute-gemm/gemm/include"
     - "-I/root/kernel_dev/cute-kernels/.pixi/envs/default/include"
     - "-I/root/kernel_dev/cute-kernels/.pixi/envs/default/targets/x86_64-linux/include"

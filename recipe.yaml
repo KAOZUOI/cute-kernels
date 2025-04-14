@@ -33,6 +33,8 @@ requirements:
     - cuda-cudart-dev =${{ cuda_compiler_version }}
     - cuda-libraries-dev
     - cuda-tools
+  run:
+    - cuda-libraries
 
 tests: 
   - script: 

@@ -1,6 +1,7 @@
 {
     "cmake.sourceDirectory": "/root/kernel_dev/cute-kernels/cute-gemm",
     "clangd.arguments": [
+        "--compile-commands-dir=/root/kernel_dev/cute-kernels/compile_commands.json",
         "--background-index",
         "--header-insertion=never",
         "--clang-tidy",

@@ -1,0 +1,65 @@
+{
+  "arch": "x86_64",
+  "build": "h47b25b4_0",
+  "build_number": 0,
+  "depends": [
+    "__glibc >=2.17,<3.0.a0",
+    "libstdcxx >=12",
+    "libgcc >=12",
+    "cuda-version >=12.6,<13",
+    "cuda-cudart >=12.6.77,<13.0a0"
+  ],
+  "md5": "77e4ba3dd55b7f8e1bf36405d16e4e74",
+  "name": "cute-kernel",
+  "platform": "linux",
+  "sha256": "e5249801189860be652012f142f778f0a0ea7ab55c08a5ef6cf05058824fedea",
+  "size": 1794506,
+  "subdir": "linux-64",
+  "timestamp": 1744636353459,
+  "version": "0.1.0",
+  "fn": "cute-kernel-0.1.0-h47b25b4_0.conda",
+  "url": "file:///tmp/.tmp0TaKnC/linux-64/cute-kernel-0.1.0-h47b25b4_0.conda",
+  "channel": "file:///tmp/.tmp0TaKnC/",
+  "extracted_package_dir": "/root/.cache/rattler/cache/pkgs/cute-kernel-0.1.0-h47b25b4_0",
+  "files": [
+    "bin/gemm",
+    "bin/gemm_blas",
+    "bin/gemm_self"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "bin/gemm",
+        "path_type": "hardlink",
+        "sha256": "a87cdffb8558437ee970f11e1337457a7dceb6fa10137cd8222c2d2e892ea3fa",
+        "sha256_in_prefix": "3226a62e56254883fbe6b0506e79b30a3ccb140632265323f86e02887f77dd3d",
+        "size_in_bytes": 1353328,
+        "file_mode": "binary",
+        "prefix_placeholder": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744636353/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol"
+      },
+      {
+        "_path": "bin/gemm_blas",
+        "path_type": "hardlink",
+        "sha256": "16124795855ec52aeeac1731bb18c9dafc04fda6485630d63b0f31928862502f",
+        "sha256_in_prefix": "3d0322b10659b602c0eb5263c4277b6fc60e1b7fdf50f7942a642d5e69e42cc8",
+        "size_in_bytes": 60928,
+        "file_mode": "binary",
+        "prefix_placeholder": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744636353/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol"
+      },
+      {
+        "_path": "bin/gemm_self",
+        "path_type": "hardlink",
+        "sha256": "455698198171d3d0494231e6d49c7f0cd8e7db0f284b1834dc73eb36cb4baafb",
+        "sha256_in_prefix": "f4b724194b7b99f1fe5889559be788cf3b958c144b9cf7d60573abc7d9342442",
+        "size_in_bytes": 1551960,
+        "file_mode": "binary",
+        "prefix_placeholder": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744636353/host_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol"
+      }
+    ]
+  },
+  "link": {
+    "source": "/root/.cache/rattler/cache/pkgs/cute-kernel-0.1.0-h47b25b4_0",
+    "type": 1
+  }
+}

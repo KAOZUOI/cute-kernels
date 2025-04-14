@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/build/gemm",
+  "command": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/build_env/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ARCH_MMA_SM90A_SUPPORTED=1 -DCUTLASS_ARCH_SM80_SUPPORTED=1 -DCUTLASS_ENABLE_ASYNC_COPY=1 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_CUDA -DTHRUST_HOST_SYSTEM=THRUST_HOST_SYSTEM_CPP --options-file CMakeFiles/gemm_self.dir/includes_CUDA.rsp -O3 -DNDEBUG -std=c++20 \"--generate-code=arch=compute_90a,code=[compute_90a,sm_90a]\" -ffunction-sections -fdata-sections -fno-common -fPIC -O3 -g --expt-relaxed-constexpr --expt-extended-lambda --ptxas-options=--warn-on-spills --ptxas-options=-v --gpu-architecture=sm_90a -x cu -c /root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/self.cu -o CMakeFiles/gemm_self.dir/self.cu.o",
+  "file": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/self.cu",
+  "output": "gemm/CMakeFiles/gemm_self.dir/self.cu.o"
+},
+{
+  "directory": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/build/gemm",
+  "command": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/build_env/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ARCH_MMA_SM90A_SUPPORTED=1 -DCUTLASS_ARCH_SM80_SUPPORTED=1 -DCUTLASS_ENABLE_ASYNC_COPY=1 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_CUDA -DTHRUST_HOST_SYSTEM=THRUST_HOST_SYSTEM_CPP --options-file CMakeFiles/gemm.dir/includes_CUDA.rsp -O3 -DNDEBUG -std=c++20 \"--generate-code=arch=compute_90a,code=[compute_90a,sm_90a]\" -ffunction-sections -fdata-sections -fno-common -fPIC -O3 -g --expt-relaxed-constexpr --expt-extended-lambda --ptxas-options=--warn-on-spills --ptxas-options=-v --gpu-architecture=sm_90a -x cu -c /root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/gemm.cu -o CMakeFiles/gemm.dir/gemm.cu.o",
+  "file": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/gemm.cu",
+  "output": "gemm/CMakeFiles/gemm.dir/gemm.cu.o"
+},
+{
+  "directory": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/build/gemm",
+  "command": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/build_env/bin/nvcc -forward-unknown-to-host-compiler -DCUTLASS_ARCH_MMA_SM90A_SUPPORTED=1 -DCUTLASS_ARCH_SM80_SUPPORTED=1 -DCUTLASS_ENABLE_ASYNC_COPY=1 -DTHRUST_DEVICE_SYSTEM=THRUST_DEVICE_SYSTEM_CUDA -DTHRUST_HOST_SYSTEM=THRUST_HOST_SYSTEM_CPP --options-file CMakeFiles/gemm_blas.dir/includes_CUDA.rsp -O3 -DNDEBUG -std=c++20 \"--generate-code=arch=compute_90a,code=[compute_90a,sm_90a]\" -ffunction-sections -fdata-sections -fno-common -fPIC -O3 -g --expt-relaxed-constexpr --expt-extended-lambda --ptxas-options=--warn-on-spills --ptxas-options=-v --gpu-architecture=sm_90a -x cu -c /root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/blas.cu -o CMakeFiles/gemm_blas.dir/blas.cu.o",
+  "file": "/root/kernel_dev/cute-kernels/output/bld/rattler-build_cute-kernel_1744639727/work/gemm/blas.cu",
+  "output": "gemm/CMakeFiles/gemm_blas.dir/blas.cu.o"
+}
+]
