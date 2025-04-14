@@ -4,6 +4,22 @@ channels = ["conda-forge"]
 name = "cute-kernels"
 platforms = ["linux-64"]
 version = "0.1.0"
+preview = ["pixi-build"]
+
+[system-requirements]
+cuda = "12.7"
+
+[package]
+name = "cute-kernels"
+version = "0.8.0"
+
+[package.build]
+channels = [
+    "https://prefix.dev/pixi-build-backends",
+    "https://prefix.dev/meta-forge",
+    "conda-forge",
+]
+backend = { name = "pixi-build-rattler-build", version = "0.1.*" }
 
 [tasks]
 
@@ -16,3 +32,7 @@ cmake = ">=4.0.0,<5"
 pip = ">=25.0.1,<26"
 python = "3.10.*"
 sysroot_linux-64 = "2.34"
+
+[activation.env]
+RATTLER_BUILD_LOG_STYLE = "plain"
+

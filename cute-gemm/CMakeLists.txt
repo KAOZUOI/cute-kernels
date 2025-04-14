@@ -5,6 +5,8 @@ if(CMAKE_CUDA_COMPILER_ID MATCHES "NVIDIA")
 endif()
 
 project(cute-gemm LANGUAGES CXX CUDA)
+enable_language(CUDA)
+find_package(CUDA REQUIRED)
 
 include(CheckLanguage)
 check_language(CXX)
