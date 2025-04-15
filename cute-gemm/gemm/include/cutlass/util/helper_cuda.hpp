@@ -68,16 +68,16 @@ device_init(int device_id, bool quiet = false)
 /**
  * Convert the SM version (e.g. v7.0, v7.5) to the physical number of cores.
  */
-inline int
-_ConvertSMVer2Cores(int major, int minor)
+inline auto
+_ConvertSMVer2Cores(int major, int minor) -> int
 {
   // Defines for GPU Architecture types (using the SM version to determine
   // the # of cores per SM
-  typedef struct {
+  using sSMtoCores = struct {
     int SM;  // 0xMm (hexadecimal notation), M = SM Major version,
     // and m = SM minor version
     int Cores;
-  } sSMtoCores;
+  };
 
   sSMtoCores nGpuArchCoresPerSM[] = {
       {0x30, 192},

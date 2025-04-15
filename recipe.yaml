@@ -14,8 +14,9 @@ build:
     - |
       export MAX_JOBS=$(($CPU_COUNT / 2 > 32 ? 32 : $CPU_COUNT / 2 ))
       export CUDA_HOME=$BUILD_PREFIX
-    - cmake -S . -B build $CMAKE_ARGS -DCMAKE_EXPORT_COMPILE_COMMANDS=1
-    - cp build/compile_commands.json $RECIPE_DIR/
+    - cmake -S . -B build $CMAKE_ARGS
+    # - cmake -S . -B build $CMAKE_ARGS -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    # - cp build/compile_commands.json $RECIPE_DIR/
     - cmake --build build -j $MAX_JOBS
     - cmake --install build --prefix $PREFIX
     - cp build/gemm/gemm* $PREFIX/bin/
