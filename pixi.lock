@@ -18,6 +18,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ca-certificates-2025.1.31-hbcca054_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/clang-20-20.1.2-default_hb5137d0_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/clang-20.1.2-default_h9e3a008_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/clangxx-20.1.2-default_ha78316a_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cmake-4.0.1-h74e3db0_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/cuda-12.6.3-ha804496_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/cuda-cccl_linux-64-12.6.77-ha770c72_0.conda
@@ -321,6 +322,16 @@ packages:
   license_family: Apache
   size: 812824
   timestamp: 1743644428193
+- conda: https://conda.anaconda.org/conda-forge/linux-64/clangxx-20.1.2-default_ha78316a_0.conda
+  sha256: c939f6b708bd11f9615258027e5d8fe2ad2f74acd0b1fe65bb628cbc42d04c3f
+  md5: 286680f000700b1a6334e982d7281064
+  depends:
+  - clang 20.1.2 default_h9e3a008_0
+  - libstdcxx-devel_linux-64
+  license: Apache-2.0 WITH LLVM-exception
+  license_family: Apache
+  size: 24132
+  timestamp: 1743644492460
 - conda: https://conda.anaconda.org/conda-forge/linux-64/cmake-4.0.1-h74e3db0_0.conda
   sha256: 7b4d6adf1b7336199c9f473a4f1b0dc0bb519cf6439bc822afb7f3f9eab7281e
   md5: 01e7e2cf3ebc8e6609d509f520151ca8
